@@ -12,8 +12,8 @@ class Course(Base):
 
     id = Column(Integer())
     name = Column(String())
-    level = Column(Integer())
-    credits = Column(Integer())
+    level = Column(Integer(), default = 1000)
+    credits = Column(Integer(), default = 4)
 
     def __repr__(self):
         return f"Id: {self.id}, " \
