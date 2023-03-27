@@ -1,6 +1,5 @@
 from .gradebook import Gradebook
 
-
 class Course:
     all = []
 
