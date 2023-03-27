@@ -1,22 +1,20 @@
-import ipdb
-from db import *
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
-# Course
-# def __init__(self, name, level, course_credit):
+from models import (Base, Course)
 
-bio = Course("Biology 101", 1000, 4)
-his = Course("History 101", 1000, 3)
+if __name__ == '__main__':
+    engine = create_engine('sqlite:///models.db')
+    Base.metadata.create_all(engine)
 
-# Student
-# def __init__(self, first_name, last_name):
+    Session = sessionmaker(bind=engine)
+    session = Session()
 
-kim = Student("Kimberly", "Benton")
+    bio = Course("Biology", 1000, 4)
+    his = Course("History", 1000, 3)
 
-
-# Gradebook
-# def __init__(self, course, student, grade):
-
-g1 = Gradebook(bio, kim, 4.0)
+    session.add(bio)
+    session.commit()
 
 
-ipdb.set_trace()
+import ipdb; ipdb.set_trace()
