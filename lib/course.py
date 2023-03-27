@@ -1,4 +1,8 @@
+from gradebook import Gradebook
 
 
 class Course:
-    pass
+    def __init__(self, name, level, credits):
+        self.name = name
+        self.level = level
+        self.credits = credits
