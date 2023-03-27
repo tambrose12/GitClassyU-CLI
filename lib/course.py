@@ -1,4 +1,4 @@
-from gradebook import Gradebook
+from .gradebook import Gradebook
 
 
 class Course:
