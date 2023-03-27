@@ -1,5 +1,5 @@
 import ipdb
-from lib import *
+from lib.db import *
 
 # Course
 # def __init__(self, name, level, course_credit):
