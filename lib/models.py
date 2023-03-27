@@ -14,20 +14,25 @@ class Course(Base):
     name = Column(String())
     level = Column(Integer())
     credits = Column(Integer())
-    teacher = Column(Integer())
 
     def __repr__(self):
         return f"Id: {self.id}, " \
             + f"Name: {self.name}, " \
             + f"Level: {self.level}, " \
-            + f"Credits: {self.credits}, " \
-            + f"Teacher: {self.teacher}"
+            + f"Credits: {self.credits} "
 
-# class Student(Base):
-#     __tablename__ = 'students'
-#     __table_args__ = (PrimaryKeyConstraint('id'),)
 
-#     id = Column(Integer())
-#     first_name = Column(String())
-#     last_name = Column(String())
-#     course_id = Column(Integer(), ForeignKey('course.id'))
+class Student(Base):
+    __tablename__ = 'students'
+    __table_args__ = (PrimaryKeyConstraint('id'),)
+
+    id = Column(Integer())
+    first_name = Column(String())
+    last_name = Column(String())
+    course_id = Column(Integer())
+
+    def __repr__(self):
+        return f"Id: {self.id}, " \
+            + f"First Name: {self.first_name}, " \
+            + f"Last Name: {self.last_name}, " \
+            + f"Course: {self.course_id} "
