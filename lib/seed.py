@@ -10,19 +10,19 @@ from db.models import (Base, Course, Student)
         
 if __name__ == '__main__':
     engine = create_engine('sqlite:///models.db')
-    # Base.metadata.create_all(engine)
+    Base.metadata.create_all(engine)
 
     Session = sessionmaker(bind=engine)
     session = Session() 
 
     fake = Faker()
     names = []
-    while len(names) < 20:
+    while len(names) < 50:
         n = fake.name()
         if n not in names:
             names.append(n)
     for n in names:
-        student = Student(name = n)
+        student = Student(name = n, course_id = random.randint(1, 15))
         session.add(student)
         session.commit()
 
@@ -34,8 +34,8 @@ if __name__ == '__main__':
 
     
 
-    # bio = Course(name="Biology", level=1000, credits=4)
-    # his = Course(name="History", level=1000, credits=3)
+bio = Course(name="Biology", level=1000, credits=4)
+his = Course(name="History", level=1000, credits=3)
 trig = Course(name="Trigonometry", level=3000, credits=3)
 chem = Course(name="Chemistry", level=1000, credits=3)
 bus = Course(name="Business", level=1000, credits=2)
@@ -49,5 +49,5 @@ phil = Course(name="Philosophy", level=3000, credits=3)
 alg = Course(name="Algebra", level=1000, credits=3)
 med = Course(name="Medicine", level=4000, credits=4)
 
-session.add_all([trig, chem, bus, crim, cul, law, psych, code, art, phil, alg, med])
+session.add_all([bio, his, trig, chem, bus, crim, cul, law, psych, code, art, phil, alg, med])
 session.commit()

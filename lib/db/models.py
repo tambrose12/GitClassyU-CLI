@@ -37,10 +37,9 @@ class Student(Base):
     name = Column(String())
     # last_name = Column(String())
     # grade = Column(Integer())
-    # course_id = Column(Integer(), ForeignKey('courses.id'))
+    course_id = Column(Integer(), ForeignKey('courses.id'))
 
     def __repr__(self):
         return f"Id: {self.id}, " \
-            + f"Name: {self.name}, " 
-            # + f"Grade: {self.grade}, " \
-            # + f"Course: {self.course_id} "
+            + f"Name: {self.name}, " \
+            + f"Course: {self.course_id} "
