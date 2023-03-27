@@ -10,8 +10,8 @@ if __name__ == '__main__':
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    bio = Course("Biology", 1000, 4)
-    his = Course("History", 1000, 3)
+    bio = Course("Biology", 1000, 4, "Mendel")
+    his = Course("History", 1000, 3, "Aristotle")
 
     session.add(bio)
     session.commit()
