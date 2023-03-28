@@ -27,14 +27,13 @@ class Student(Base):
     __table_args__ = (PrimaryKeyConstraint('id'),)
 
     id = Column(Integer())
-    first_name = Column(String())
-    last_name = Column(String())
-    grade = Column(Integer())
-    course_id = Column(Integer(), ForeignKey('courses.id'))
+    name = Column(String())
+    # last_name = Column(String())
+    # grade = Column(Integer())
+    # course_id = Column(Integer(), ForeignKey('courses.id'))
 
     def __repr__(self):
         return f"Id: {self.id}, " \
-            + f"First Name: {self.first_name}, " \
-            + f"Last Name: {self.last_name}, " \
-            + f"Grade: {self.grade}, " \
-            + f"Course: {self.course_id} "
+            + f"Name: {self.name}, " 
+            # + f"Grade: {self.grade}, " \
+            # + f"Course: {self.course_id} "
