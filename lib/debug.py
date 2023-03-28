@@ -6,18 +6,18 @@ from db import *
 from db.models import (Base, Course, Student)
 seed()
 
-if __name__ == '__main__':
-    engine = create_engine('sqlite:///models.db')
-    Base.metadata.create_all(engine)
+# if __name__ == '__main__':
+#     engine = create_engine('sqlite:///models.db')
+#     Base.metadata.create_all(engine)
 
-    Session = sessionmaker(bind=engine)
-    session = Session()
+#     Session = sessionmaker(bind=engine)
+#     session = Session()
 
-    bio = Course(name="Biology", level=1000, credits=4)
-    his = Course(name="History", level=1000, credits=3)
+#     bio = Course(name="Biology", level=1000, credits=4)
+#     his = Course(name="History", level=1000, credits=3)
 
-    session.add_all([bio,his])
-    session.commit()
+#     session.add_all([bio,his])
+#     session.commit()
 
 
 
