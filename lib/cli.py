@@ -1,7 +1,7 @@
 meowmeow = "lol check it out we are wizards now"
 
 while meowmeow != 'x':
-    meowmeow = input(':upside_down_face:')
+    meowmeow = input('🙃')
     if meowmeow == 'l':
         print('we love python')
     elif meowmeow != 'x':
