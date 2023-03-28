@@ -13,8 +13,11 @@ if __name__ == '__main__':
     bio = Course(name="Biology", level=1000, credits=4)
     his = Course(name="History", level=1000, credits=3)
 
-    session.add(bio)
+    # session.add(bio)
+    # session.commit()
+
+    session.add(his)
     session.commit()
 
-
-import ipdb; ipdb.set_trace()
+import ipdb
+ipdb.set_trace()
