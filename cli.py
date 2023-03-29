@@ -4,7 +4,6 @@ from sqlalchemy.orm import sessionmaker
 from lib.db.models import (Base, Course, Student)
 
 
-
 class CLI:
     def __init__(self, user_input):
         self.courses = [course for course in session.query(Course)]
@@ -17,6 +16,8 @@ class CLI:
         print(f'🔥🔥🔥 Welcome To Git Classy University {self.name} 🔥🔥🔥')
         print(' ')
 
+        show_choices = False
+
         exit = False
         while exit == False:
             choice = input(
@@ -24,6 +25,26 @@ class CLI:
             print(' ')
             if choice.lower() == "courses":
                 show_courses(self)
+                show_choices = True
+                new_choice = input(
+                    "Enter course number to see students taking that course, or enter 'x' to continue without viewing students in a course:")
+                while show_choices == True:
+
+                    for course in self.courses:
+                        if new_choice == "x" or new_choice == "X":
+                            show_choices = False
+                        elif new_choice == "1" or new_choice == "2" or new_choice == "3" or new_choice == "4" or new_choice == "5" or new_choice == "6" or new_choice == "7" or new_choice == "8" or new_choice == "9" or new_choice == "10" or new_choice == "11" or new_choice == "12" or new_choice == "13" or new_choice == "14" or new_choice == "15":
+                            show_choices = False
+                            # show_students_in_course(new_choice)
+                            selected_course_id = int(new_choice)
+                            course_students = []
+                            if selected_course_id == course.id:
+                                for student in self.students:
+                                    if student.course_id == selected_course_id:
+                                        course_students.append(student.name)
+                                print(course_students)
+                        break
+
             elif choice.lower() == "students":
                 show_students(self)
             elif choice.lower() == "add":
@@ -39,6 +60,15 @@ class CLI:
         printer(self.name)
 
 
+# def show_students_in_course(self, choice):
+#     for course in self.courses:
+#         selected_course_id = int(choice)
+#         course_students = []
+#         if selected_course_id == course.id:
+#             for student in self.students:
+#                 if student.course_id == selected_course_id:
+#                     course_students.append(student.name)
+#             print(course_students)
 
 
 def printer(user_input):
@@ -65,8 +95,6 @@ def show_students(self):
     print_students(self.students)
 
 
-
-
 def print_students(students):
     print(' ')
     print('***Our Current Students***')
@@ -86,10 +114,7 @@ def add_course(self):
     session.add(course)
     session.commit()
 
-    self.courses.append(course)  
-
-
-
+    self.courses.append(course)
 
 
 if __name__ == '__main__':
@@ -98,7 +123,6 @@ if __name__ == '__main__':
     session = Session()
     user_input = input("Enter Your Name: ")
     CLI(user_input)
-
 
 
 # meowmeow = "lol check it out we are wizards now"
