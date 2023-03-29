@@ -29,20 +29,18 @@ class CLI:
                 new_choice = input(
                     "Enter course number to see students taking that course, or enter 'x' to continue without viewing students in a course:")
                 while show_choices == True:
+                    if new_choice == "x" or new_choice == "X":
+                        show_choices = False
 
-                    for course in self.courses:
-                        if new_choice == "x" or new_choice == "X":
-                            show_choices = False
-                        elif new_choice == "1" or new_choice == "2" or new_choice == "3" or new_choice == "4" or new_choice == "5" or new_choice == "6" or new_choice == "7" or new_choice == "8" or new_choice == "9" or new_choice == "10" or new_choice == "11" or new_choice == "12" or new_choice == "13" or new_choice == "14" or new_choice == "15":
-                            show_choices = False
-                            # show_students_in_course(new_choice)
-                            selected_course_id = int(new_choice)
-                            course_students = []
-                            if selected_course_id == course.id:
-                                for student in self.students:
-                                    if student.course_id == selected_course_id:
-                                        course_students.append(student.name)
-                                print(course_students)
+                    elif new_choice == "1" or new_choice == "2" or new_choice == "3" or new_choice == "4" or new_choice == "5" or new_choice == "6" or new_choice == "7" or new_choice == "8" or new_choice == "9" or new_choice == "10" or new_choice == "11" or new_choice == "12" or new_choice == "13" or new_choice == "14" or new_choice == "15":
+                        show_choices = False
+
+                        selected_course_id = int(new_choice)
+                        selected_students = session.query(
+                            Student).filter_by(course_id=selected_course_id).all()
+                        for index, student in enumerate(selected_students):
+                            print(f'{index + 1}. {student.name}')
+
                         break
 
             elif choice.lower() == "students":
@@ -58,17 +56,6 @@ class CLI:
                 exit = True
 
         printer(self.name)
-
-
-# def show_students_in_course(self, choice):
-#     for course in self.courses:
-#         selected_course_id = int(choice)
-#         course_students = []
-#         if selected_course_id == course.id:
-#             for student in self.students:
-#                 if student.course_id == selected_course_id:
-#                     course_students.append(student.name)
-#             print(course_students)
 
 
 def printer(user_input):
