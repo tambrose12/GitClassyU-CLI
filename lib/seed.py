@@ -7,13 +7,16 @@ from sqlalchemy.orm import sessionmaker
 
 from db.models import (Base, Course, Student)
 
-        
+
+# This is all commented out because the databases have already been seeded and tables created.
+# The code here should not need run unless creating new tables and/or seeding with data.
+
 # if __name__ == '__main__':
 #     engine = create_engine('sqlite:///models.db')
 #     Base.metadata.create_all(engine)
 
 #     Session = sessionmaker(bind=engine)
-#     session = Session() 
+#     session = Session()
 
 #     fake = Faker()
 #     names = []
@@ -27,12 +30,8 @@ from db.models import (Base, Course, Student)
 #         session.commit()
 
 
-
-
-
 #     # print(names)
 
-    
 
 # bio = Course(name="Biology", level=1000, credits=4)
 # his = Course(name="History", level=1000, credits=3)

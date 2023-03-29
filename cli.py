@@ -2,6 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from lib.db.models import (Base, Course, Student)
+import random
 
 
 class CLI:
@@ -21,13 +22,13 @@ class CLI:
         exit = False
         while exit == False:
             choice = input(
-                f'Type "courses" to see a list of All Courses. Type "add" to add a course. Type "students" to see a list of all students at the university.: ')
+                f'✨Type "courses" to see a list of All Courses. Type "enroll" to enroll as a student. Type "students" to see a list of all students at the university.✨ ')
             print(' ')
             if choice.lower() == "courses":
                 show_courses(self)
                 show_choices = True
                 new_choice = input(
-                    "Enter course number to see students taking that course, or enter 'x' to continue without viewing students in a course:")
+                    "Enter course number to see students taking that course, or enter 'x' to continue without viewing students in a course: ")
                 while show_choices == True:
                     if new_choice == "x" or new_choice == "X":
                         show_choices = False
@@ -42,15 +43,28 @@ class CLI:
                             print(f'{index + 1}. {student.name}')
 
                         break
+                    else:
+                        show_choices = False
+                        choice = input(
+                            f'Type any key to get the continue or exit menu selection. ')
+                        print(' ')
 
             elif choice.lower() == "students":
                 show_students(self)
-            elif choice.lower() == "add":
-                add_course(self)
+            elif choice.lower() == "enroll":
+                print(
+                    "🔥 We are excited to have you! If you are ready to enroll, enter your full name below! 🔥")
+                print(" ")
+                add_student(self)
+
+            elif choice.lower() == "secret":
+                print("🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥")
+                print("🔥🔥🔥 🐍 We Love Python! 🐍 🔥🔥🔥")
+                print("🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥")
 
             print(' ')
             user_input = input(
-                '🔥Enter "c" to continue, or Enter "x" to exit application: ')
+                '🔥 Enter "c" to continue, or Enter "x" to exit application: ')
             print(' ')
             if user_input == "X" or user_input == 'x':
                 exit = True
@@ -91,17 +105,27 @@ def print_students(students):
     print(' ')
 
 
-def add_course(self):
-    name = input("Enter the New Course Name: ")
-    level = input("Enter the Course Level: ")
-    c_credits = input(
-        "Enter the Number of Credits a Student gets for the course: ")
-    course = Course(name=name, level=level, credits=c_credits)
+# def add_course(self):
+#     name = input("Enter the New Course Name: ")
+#     level = input("Enter the Course Level: ")
+#     c_credits = input(
+#         "Enter the Number of Credits a Student gets for the course: ")
+#     course = Course(name=name, level=level, credits=c_credits)
 
-    session.add(course)
+#     session.add(course)
+#     session.commit()
+
+#     self.courses.append(course)
+
+def add_student(self):
+    name = input("Enter Your Full Name Here: ")
+    student = Student(name=name, course_id=random.randint(1, 15))
+
+    session.add(student)
     session.commit()
 
-    self.courses.append(course)
+    self.students.append(student)
+    print(f"🔥🔥🔥 Thank you for enrolling at GCU! 🔥🔥🔥")
 
 
 if __name__ == '__main__':
