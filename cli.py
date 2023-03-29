@@ -14,7 +14,7 @@ class CLI:
 
     def start(self):
         print(' ')
-        print(f'🔥🔥🔥 Welcome To Git Classy University {self.name} 🔥🔥🔥')
+        print(f'🔥🔥🔥 Welcome To Git Classy University, {self.name} 🔥🔥🔥')
         print(' ')
 
         show_choices = False
@@ -51,6 +51,26 @@ class CLI:
 
             elif choice.lower() == "students":
                 show_students(self)
+                show_choices = True
+                new_choice = input(
+                    "Enter student number to see course the student is enrolled in, or enter 'x' to continue: ")
+                while show_choices == True:
+                    if new_choice == "x" or new_choice == "X":
+                        show_choices = False
+
+                    elif new_choice == "1" or new_choice == "2" or new_choice == "3" or new_choice == "4" or new_choice == "5" or new_choice == "6" or new_choice == "7" or new_choice == "8" or new_choice == "9" or new_choice == "10" or new_choice == "11" or new_choice == "12" or new_choice == "13" or new_choice == "14" or new_choice == "15":
+                        show_choices = False
+
+                        selected_student_id = int(new_choice)
+                        for s in self.students:
+                            if s.id == selected_student_id:
+                                students_course_id = s.course_id
+                                courses_in = [
+                                    c.name for c in self.courses if c.id == students_course_id]
+                                print(f"{s.name} is enrolled in: {courses_in}")
+
+                        break
+
             elif choice.lower() == "enroll":
                 print(
                     "🔥 We are excited to have you! If you are ready to enroll, enter your full name below! 🔥")
