@@ -20,7 +20,7 @@ from db.models import (Base, Course, Student, Gradebook)
 
 #     grade_entry = Gradebook(student_name=s.name, grade=random.randint(
 #         0, 4), course_name=c.name, course_id=c.id, student_id=s.id)
-#     session.add(grade_entry)
+#     session.add(grade_entry)s
 #     session.commit()
 
 

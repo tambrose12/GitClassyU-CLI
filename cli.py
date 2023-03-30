@@ -111,6 +111,7 @@ class CLI:
 def printer(user_input):
     print(' ')
     print(f'Thanks for checking out the classes we offer, {user_input}!')
+    print(' ')
 
 
 def show_courses(self):
