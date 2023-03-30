@@ -8,7 +8,7 @@ import random
 Base = declarative_base()
 
 engine = create_engine('sqlite:///models.db')
-Base.metadata.create_all(engine)
+# Base.metadata.create_all(engine)
 
 Session = sessionmaker(bind=engine)
 session = Session()

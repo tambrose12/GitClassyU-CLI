@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from lib.db.models import (Base, Course, Student, Gradebook)
+from lib.models import (Base, Course, Student, Gradebook)
 import random
 
 
@@ -170,7 +170,7 @@ def print_grades(grades):
 
 
 if __name__ == '__main__':
-    engine = create_engine('sqlite:///models.db')
+    engine = create_engine('sqlite:///lib/models.db')
     Session = sessionmaker(bind=engine)
     session = Session()
     user_input = input("Enter Your Name: ")
