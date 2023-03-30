@@ -3,6 +3,8 @@ from sqlalchemy.orm import sessionmaker
 
 from lib.models import (Base, Course, Student, Gradebook)
 import random
+from rich.console import Console
+from rich.table import Table
 
 
 class CLI:
@@ -159,13 +161,21 @@ def show_grades(self):
 
 def print_grades(grades):
 
+    table = Table(title="Gradebook")
+    table.add_column("Student ID", style="magenta")
+    table.add_column("Student", style="cyan", no_wrap=True)
+    table.add_column("Grade", style="green")
+    table.add_column("Course Name", justify="right", style="cyan")
+    table.add_column("Course ID", style="cyan", no_wrap=True)
+
     print(' ')
     print('***Gradebook***')
     print('')
     for i, g in enumerate(grades):
-        print(
-            f"{i+1}) Student: {g.student_name},  Grade: {g.grade},  Course Name: {g.course_name},  Course ID: {g.course_id}")
-
+        table.add_row(
+            f"{i+1}", f"{g.student_name}",  f"{g.grade}",  f"{g.course_name}",  f"{g.course_id}")
+    console = Console()
+    console.print(table)
     print(' ')
 
 
