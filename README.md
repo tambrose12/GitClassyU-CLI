@@ -4,38 +4,25 @@ A Course has many Students.
 A Student can have many Courses.
 A Gradebook belongs to one Student and one Class.
 
-When you see a '#', this means the functionality will be related to the instance, a '.', the class.
+Command Line Opens with a greeting to enter your Name.
 
-Course#name
-    returns a string that is the course's name
+With Name input Welcome message appears with options of main menu options of :
 
-Course#level
-    returns a number representing the level of the college course
+1. "C" to see a list of All Courses:
+    -Once inside the course list - user has option of entering course number to see a list of students enrolled in selected course.
+    -"C" will take the user back to main menu, "X" will exit the application
 
-Course#credits
-    returns the number of credits the course is worth
+2. "E" to enroll as a student:
+    -User will recieve a prompt to enter full name and application will enroll user in a course.
+    -"C" will take the user back to main menu, "X" will exit the application
 
-Course.all
-    returns a list of all Courses
+3. "S" to see a list of all students at the university:
+    -Once in student list the user has the option of entering a student number to see what course that student is enrolled in. 
+    -"C" will take the user back to main menu, "X" will exit the application
 
+4. "G" to see the gradebook:
+    -User will see a list of all students and their grade and their corresponding course information.
 
+5. User my enter "secret" for a surprise 😉
 
-Student#first_name
-    returns string of student's first name
-
-Student#last_name
-    returns string of student's last name
-
-Student#name
-    returns the student's Full name
-
-
-
-Gradebook#course
-    returns the Course Instance associated with that grade
-
-Gradebook#student
-    returns the Student Instance associated with that grade
-
-Gradebook#grade
-    returns the number grade for that Student instance in that Course instance
+ 
