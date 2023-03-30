@@ -5,15 +5,24 @@ import random
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from db.models import (Base, Course, Student)
+from db.models import (Base, Course, Student, Gradebook)
 
-        
+
 # if __name__ == '__main__':
 #     engine = create_engine('sqlite:///models.db')
 #     Base.metadata.create_all(engine)
 
 #     Session = sessionmaker(bind=engine)
-#     session = Session() 
+#     session = Session()
+
+
+# for c, s in session.query(Course, Student).filter(Course.id == Student.course_id).all():
+
+#     grade_entry = Gradebook(student_name=s.name, grade=random.randint(
+#         0, 4), course_name=c.name, course_id=c.id, student_id=s.id)
+#     session.add(grade_entry)
+#     session.commit()
+
 
 #     fake = Faker()
 #     names = []
@@ -27,12 +36,8 @@ from db.models import (Base, Course, Student)
 #         session.commit()
 
 
-
-
-
 #     # print(names)
 
-    
 
 # bio = Course(name="Biology", level=1000, credits=4)
 # his = Course(name="History", level=1000, credits=3)

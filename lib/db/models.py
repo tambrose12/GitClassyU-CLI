@@ -3,6 +3,7 @@ from sqlalchemy import (PrimaryKeyConstraint, Column,
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
+import random
 
 Base = declarative_base()
 
@@ -35,8 +36,6 @@ class Student(Base):
 
     id = Column(Integer())
     name = Column(String())
-    # last_name = Column(String())
-    # grade = Column(Integer())
     course_id = Column(Integer(), ForeignKey('courses.id'))
 
     def __repr__(self):
@@ -45,15 +44,25 @@ class Student(Base):
             + f"Course: {self.course_id} "
 
 
-# class Gradebook:
-#     __tablename__ = 'gradebooks'
-#     __table_args__ = (PrimaryKeyConstraint('id'),)
+class Gradebook(Base):
+    __tablename__ = 'gradebooks'
+    __table_args__ = (PrimaryKeyConstraint('id'),)
 
-#     id = Column(Integer())
-#     course_id = Column(Integer(), ForeignKey('courses.id'))
-#     student_id = Column(Integer(), ForeignKey('students.id'))
+    id = Column(Integer())
+    student_name = Column(String())
+    grade = Column(Integer(), default=random.randint(0, 4))
+    course_name = Column(String())
+    course_id = Column(Integer(), ForeignKey('courses.id'))
+    student_id = Column(Integer(), ForeignKey('students.id'))
 
-#     def __repr__(self):
-#         return f"Id: {self.id}, " \
-#             + f"Name: {self.name}, " \
-#             + f"Course: {self.course_id} "
+    def __repr__(self):
+        # for c, s in session.query(Course, Student).filter(Course.id == Student.course_id).all():
+        #     return ("ID: {} Name: {} Course Name: {} Grade: {}".format(
+        #         s.id, s.name, c.name, grade=random.randint(0, 4)))
+
+        return f"Id: {self.id}, " \
+            + f"Student Name: {self.student_name}, " \
+            + f"Grade: {self.grade}, " \
+            + f"Course Name: {self.course_name} ," \
+            + f"Course ID: {self.course_id} ," \
+            + f"Student ID: {self.student_id}"

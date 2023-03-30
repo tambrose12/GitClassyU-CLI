@@ -1,21 +1,21 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from lib.db.models import (Base, Course, Student)
-
-# testing push
+from lib.db.models import (Base, Course, Student, Gradebook)
+import random
 
 
 class CLI:
     def __init__(self, user_input):
         self.courses = [course for course in session.query(Course)]
         self.students = [student for student in session.query(Student)]
+        self.grades = [grade for grade in session.query(Gradebook)]
         self.name = user_input
         self.start()
 
     def start(self):
         print(' ')
-        print(f'🔥🔥🔥 Welcome To Git Classy University {self.name} 🔥🔥🔥')
+        print(f'🔥🔥🔥 Welcome To Git Classy University, {self.name} 🔥🔥🔥')
         print(' ')
 
         show_choices = False
@@ -23,13 +23,13 @@ class CLI:
         exit = False
         while exit == False:
             choice = input(
-                f'Type "courses" to see a list of All Courses. Type "add" to add a course. Type "students" to see a list of all students at the university.: ')
+                f'✨Enter "C" to see a list of All Courses. Enter "E" to enroll as a student. Enter "S" to see a list of all students at the university. Enter "G" to see the gradebook. ✨ ')
             print(' ')
-            if choice.lower() == "courses":
+            if choice.lower() == "c":
                 show_courses(self)
                 show_choices = True
                 new_choice = input(
-                    "Enter course number to see students taking that course, or enter 'x' to continue without viewing students in a course:")
+                    "Enter course number to see students taking that course, or enter 'x' to continue without viewing students in a course: ")
                 while show_choices == True:
                     if new_choice == "x" or new_choice == "X":
                         show_choices = False
@@ -44,18 +44,63 @@ class CLI:
                             print(f'{index + 1}. {student.name}')
 
                         break
+                    else:
+                        show_choices = False
+                        choice = input(
+                            f'Type any key to get the continue or exit menu selection. ')
+                        print(' ')
 
-            elif choice.lower() == "students":
+            elif choice.lower() == "s":
                 show_students(self)
-            elif choice.lower() == "add":
-                add_course(self)
-    # testing
-            elif choice.lower() == "add":
-                add_course(self)
+                show_choices = True
+                new_choice = input(
+                    "Enter student number to see course the student is enrolled in, or enter 'x' to continue: ")
+                student_range = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34',
+                                 '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50', '51', '52', '53', '54', '55', '56', '57', '59', '60', '61', '62', '63', '64', '65', '66', '67', '68', '69', '70']
+
+                while show_choices == True:
+                    if new_choice == "x" or new_choice == "X":
+                        show_choices = False
+
+                    elif new_choice in student_range:
+                        show_choices = False
+
+                        selected_student_id = int(new_choice)
+                        for s in self.students:
+                            if s.id == selected_student_id:
+                                students_course_id = s.course_id
+                                courses_in = [
+                                    c.name for c in self.courses if c.id == students_course_id]
+                                print(f"{s.name} is enrolled in: {courses_in}")
+
+                        break
+
+            elif choice.lower() == "e":
+                print(
+                    "🔥 We are excited to have you! If you are ready to enroll, enter your full name below! 🔥")
+                print(" ")
+                add_student(self)
+
+            elif choice.lower() == "g":
+                print("All Students Grades Listed Below:")
+                print(' ')
+                show_grades(self)
+
+            elif choice.lower() == "secret":
+                print("🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥")
+                print("🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🐍 We Love Python! 🐍🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥")
+                print("🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥")
+                print(" ")
+                print(
+                    "🦨🦨 You have now completed the BloodOath to join the Lil' Stinkers Cult 🦨🦨")
+                print(
+                    "🧑‍🎤🐱🐱🧙‍♂️🕺🌮🍷 Our Benevolent Dictator For ✨LIFE✨ is Adam La Rosa 🧑‍🎤🐱🐱🧙‍♂️🕺🌮🍷")
+                print("🙇‍♂️🙇‍♂️🙇‍♂️🙇‍♂️🙇‍♂️🙇‍♀️🙇‍♀️🙇‍♀️🙇‍♀️🙇‍♀️🙇‍♀️🙇‍♀️🙇‍♂️🙇‍♂️🙇‍♂️🙇‍♂️🙇‍♂️🙇‍♀️🙇‍♀️🙇‍♀️🙇‍♀️🙇‍♀️🙇‍♀️🙇‍♂️🙇‍♂️🙇‍♂️🙇‍♂️🙇‍♂️🙇‍♂️🙇‍♂️🙇‍♂️")
+                print("")
 
             print(' ')
             user_input = input(
-                '🔥Enter "c" to continue, or Enter "x" to exit application: ')
+                '🔥 Enter "C" to continue, or Enter "X" to exit application: ')
             print(' ')
             if user_input == "X" or user_input == 'x':
                 exit = True
@@ -96,17 +141,31 @@ def print_students(students):
     print(' ')
 
 
-def add_course(self):
-    name = input("Enter the New Course Name: ")
-    level = input("Enter the Course Level: ")
-    c_credits = input(
-        "Enter the Number of Credits a Student gets for the course: ")
-    course = Course(name=name, level=level, credits=c_credits)
+def add_student(self):
+    name = input("Enter Your Full Name Here: ")
+    student = Student(name=name, course_id=random.randint(1, 15))
 
-    session.add(course)
+    session.add(student)
     session.commit()
 
-    self.courses.append(course)
+    self.students.append(student)
+    print(f"🔥🔥🔥 Thank you for enrolling at GCU! 🔥🔥🔥")
+
+
+def show_grades(self):
+    print_grades(self.grades)
+
+
+def print_grades(grades):
+
+    print(' ')
+    print('***Gradebook***')
+    print('')
+    for i, g in enumerate(grades):
+        print(
+            f"{i+1}) Student: {g.student_name}, Grade: {g.grade}, Course Name: {g.course_name}, Course ID: {g.course_id}")
+
+    print(' ')
 
 
 if __name__ == '__main__':
@@ -115,13 +174,3 @@ if __name__ == '__main__':
     session = Session()
     user_input = input("Enter Your Name: ")
     CLI(user_input)
-
-
-# meowmeow = "lol check it out we are wizards now"
-
-# while meowmeow != 'x':
-#     meowmeow = input('🔥')
-#     if meowmeow == 'l':
-#         print('we love python 🐍')
-#     elif meowmeow != 'x':
-#         print(f"{meowmeow} is not the exit")
