@@ -6,7 +6,7 @@ A Gradebook belongs to one Student and one Class.
 
 Command Line Opens with a greeting to enter your Name.
 
-With Name input Welcome message appears with options of main menu options of :
+With Name input Welcome message appears with options of main menu:
 
 1. "C" to see a list of All Courses:
     -Once inside the course list - user has option of entering course number to see a list of students enrolled in selected course.
@@ -24,5 +24,8 @@ With Name input Welcome message appears with options of main menu options of :
     -User will see a list of all students and their grade and their corresponding course information.
 
 5. User my enter "secret" for a surprise 😉
+
+
+Our code sorts through all the options with a combination of if, elif & while loops. Each different selection calls a corresponding function that sorts through our database to print out the information. Our Cli code is defined as a class that on the __init__ uses a session.query() to create the attribute self.course, self.students, self.grades to access the inforamtion needed for the functionality. 
 
  
