@@ -3,6 +3,8 @@ from sqlalchemy.orm import sessionmaker
 
 from lib.db.models import (Base, Course, Student)
 
+# testing push
+
 
 class CLI:
     def __init__(self, user_input):
@@ -45,6 +47,9 @@ class CLI:
 
             elif choice.lower() == "students":
                 show_students(self)
+            elif choice.lower() == "add":
+                add_course(self)
+    # testing
             elif choice.lower() == "add":
                 add_course(self)
 
