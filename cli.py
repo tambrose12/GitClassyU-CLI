@@ -164,16 +164,14 @@ def print_grades(grades):
     table = Table(title="Gradebook")
     table.add_column("Student ID", style="magenta")
     table.add_column("Student", style="cyan", no_wrap=True)
-    table.add_column("Grade", style="green")
-    table.add_column("Course Name", justify="right", style="cyan")
     table.add_column("Course ID", style="cyan", no_wrap=True)
+    table.add_column("Course Name", justify="right", style="cyan")
+    table.add_column("Grade", style="green")
 
-    print(' ')
-    print('***Gradebook***')
     print('')
     for i, g in enumerate(grades):
         table.add_row(
-            f"{i+1}", f"{g.student_name}",  f"{g.grade}",  f"{g.course_name}",  f"{g.course_id}")
+            f"{i+1}", f"{g.student_name}",  f"{g.course_id}",  f"{g.course_name}",  f"{g.grade}")
     console = Console()
     console.print(table)
     print(' ')

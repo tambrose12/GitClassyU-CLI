@@ -50,15 +50,12 @@ class Gradebook(Base):
 
     id = Column(Integer())
     student_name = Column(String())
-    grade = Column(Integer(), default=random.randint(0, 4))
+    grade = Column(Integer(), default=round(random.uniform(0.0, 4.0), 2))
     course_name = Column(String())
     course_id = Column(Integer(), ForeignKey('courses.id'))
     student_id = Column(Integer(), ForeignKey('students.id'))
 
     def __repr__(self):
-        # for c, s in session.query(Course, Student).filter(Course.id == Student.course_id).all():
-        #     return ("ID: {} Name: {} Course Name: {} Grade: {}".format(
-        #         s.id, s.name, c.name, grade=random.randint(0, 4)))
 
         return f"Id: {self.id}, " \
             + f"Student Name: {self.student_name}, " \
