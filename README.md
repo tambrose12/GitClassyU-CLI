@@ -1,5 +1,8 @@
 # Phase-3-Project
 
+Watch the Video to see a Quick Demo:
+https://www.loom.com/share/063e6910266742cba5b1f7b5b1612bb0
+
 A Course has many Students.
 A Student can have many Courses.
 A Gradebook belongs to one Student and one Class.
